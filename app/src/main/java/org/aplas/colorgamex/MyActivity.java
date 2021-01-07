@@ -50,6 +50,7 @@ public class MyActivity extends AppCompatActivity {
 
     CountDownTimer countDown;
     final String FORMAT = "%d:%d";
+    int deadCounter=0;
 
     String[] clrList;
     HashMap charList = new HashMap();
@@ -86,8 +87,14 @@ public class MyActivity extends AppCompatActivity {
         String clrTxt = ((TextView)findViewById(R.id.clrText)).getText().toString();
         int lastNum = Arrays.asList(clrList).indexOf(clrTxt);
         int colorIdx = getNewRandomInt(0,5,lastNum);
-        clrText.setText(clrList[colorIdx]);
-        countDown.start();
+        System.out.println(clrText.getText().toString());
+        if (deadCounter==0){
+            deadCounter++;
+        }else {
+            System.out.println(clrText.getText().toString()+" executed");
+            clrText.setText(clrList[colorIdx]);
+            countDown.start();
+        }
     }
 
     int getNewRandomInt(int min, int max, int except) {
@@ -176,7 +183,11 @@ public class MyActivity extends AppCompatActivity {
             int lastNum = Arrays.asList(clrList).indexOf(clrTxt);
             int colorIdx = getNewRandomInt(0,5,lastNum);
             clrText.setText(clrList[colorIdx]);
-        } else {
+        }
+        else if (!isStarted){
+
+        }
+        else {
             wrongSubmit();
 
             //            change color
@@ -208,7 +219,9 @@ public class MyActivity extends AppCompatActivity {
         progressbox = (ViewGroup) findViewById(R.id.progressBox);
         progress = (ProgressBar) findViewById(R.id.progressScore);
         isMinus = (Switch) findViewById(R.id.isMinus);
+//        clrList = getResources().getStringArray(R.array.colorList);
+        clrText.setText("");
         initTimer();
-
+        initColorList();
     }
 }

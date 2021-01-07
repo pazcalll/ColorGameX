@@ -56,7 +56,6 @@
             android:layout_height="55dp"
             android:textSize="16pt"
             android:textStyle="bold"
-            android:text=""
             android:background="@color/textBackground"
             android:gravity="center"
             android:layout_gravity="center"
